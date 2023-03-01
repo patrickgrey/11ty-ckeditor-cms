@@ -25,9 +25,14 @@ DecoupledEditor
     editor.model.document.on('change:data', () => {
       startAutoSave(editor.getData());
     });
+
     const toolbarButtons = document.querySelector(".ck-toolbar__items");
     const cmsPublish = document.querySelector("#cms-publish");
     toolbarButtons.appendChild(cmsPublish);
+
+    cmsPublish.addEventListener("click", function (event) {
+      console.log("cmsPublish: ");
+    })
 
   })
   .catch(error => {

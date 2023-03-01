@@ -201,4 +201,5 @@ Preserve the relative scale, though. */
   color: white !important;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  cursor: pointer;
 }
