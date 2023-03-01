@@ -53,8 +53,7 @@ module.exports = function (eleventyConfig) {
       tempFolderName: "website-publish", // Default name of the temp folder
     });
   }
-
-  if (process.env.DEV_ENVIRONMENT != "dev") {
+  else {
     eleventyConfig.addPlugin(purgeCssPlugin, {
       // Optional: Specify the location of your PurgeCSS config
       config: "./purgecss.config.js",
@@ -62,6 +61,7 @@ module.exports = function (eleventyConfig) {
       // Optional: Set quiet: true to suppress terminal output
       quiet: false,
     });
+    eleventyConfig.ignores.add("./website-source/_cms/**");
   }
 
   // Add filters
