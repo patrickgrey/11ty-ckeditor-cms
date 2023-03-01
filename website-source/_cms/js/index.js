@@ -9,7 +9,7 @@ function startAutoSave(data) {
 
 // https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/ui/document-editor.html
 DecoupledEditor
-  .create(document.querySelector('#ck11-editor'), {
+  .create(document.querySelector('.document-editor__editable'), {
     heading: {
       options: [
         { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
@@ -20,11 +20,15 @@ DecoupledEditor
     }
   })
   .then(editor => {
-    const toolbarContainer = document.querySelector('#ck11-editor-toolbar');
+    const toolbarContainer = document.querySelector('.document-editor__toolbar');
     toolbarContainer.appendChild(editor.ui.view.toolbar.element);
     editor.model.document.on('change:data', () => {
       startAutoSave(editor.getData());
     });
+    const toolbarButtons = document.querySelector(".ck-toolbar__items");
+    const cmsPublish = document.querySelector("#cms-publish");
+    toolbarButtons.appendChild(cmsPublish);
+
   })
   .catch(error => {
     console.error(error);

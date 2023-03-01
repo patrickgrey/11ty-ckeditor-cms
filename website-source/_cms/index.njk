@@ -5,12 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>11ty-CKEditor CMS</title>
-    <script type="module"  src="./js/index.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+    <script type="module" defer src="./js/index.js"></script>
   </head>
   <body>
-    <button>Publish!</button>
-    <p>CMS Go!</p>
-    <div id="ck11-editor-toolbar"></div>
-    <div id="ck11-editor"></div>
+    <button id="cms-publish" class="ck ck-button ck-off" type="button" tabindex="-1" aria-pressed="false" data-cke-tooltip-text="Publish page to website" data-cke-tooltip-position="s">Publish!</button>
+
+    <div class="document-editor">
+      <div class="document-editor__toolbar"></div>
+      <div class="document-editor__editable-container">
+        <div class="document-editor__editable">
+            Editor content is inserted here.
+        </div>
+      </div>
+    </div>
   </body>
 </html>
