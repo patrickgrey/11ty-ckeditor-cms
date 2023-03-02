@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page editor</title>
+    <link rel="stylesheet" href="../css/editor.css">
+    <script type="module" defer src="../js/editor.js"></script>
+  </head>
+  <body>
+    <button id="cms-publish" class="ck ck-button ck-off" type="button" tabindex="-1" aria-pressed="false" data-cke-tooltip-text="Publish page to website" data-cke-tooltip-position="s">
+      Publish!
+    </button>
+
+    <div id="cms-meta-container">
+      <label for="cms-meta-title">Page title</label>
+      <input type="text" id="cms-meta-title">
+      <select name="cms-meta-layout" id="cms-meta-layout">
+        <option value="blog">blog</option>
+      </select>
+    </div>
+
+    <div class="document-editor">
+      <div class="document-editor__toolbar"></div>
+      <div class="document-editor__editable-container">
+        <div class="document-editor__editable">
+            Editor content is inserted here.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

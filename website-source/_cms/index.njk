@@ -1,25 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>11ty-CKEditor CMS</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <script type="module" defer src="./js/index.js"></script>
-  </head>
-  <body>
-    <button id="cms-publish" class="ck ck-button ck-off" type="button" tabindex="-1" aria-pressed="false" data-cke-tooltip-text="Publish page to website" data-cke-tooltip-position="s">
-      Publish!
-    </button>
+---
+layout: layouts/base.njk
+title: CMS Home
+jsFiles:
+cssFiles:
+useDefaultHeader: false
+hideBanner: true
+---
+<header class="ians-column-wide-1 mt-3">
+  <h1>{{title}}</h1>
+</header>
 
-    <div class="document-editor">
-      <div class="document-editor__toolbar"></div>
-      <div class="document-editor__editable-container">
-        <div class="document-editor__editable">
-            Editor content is inserted here.
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
+<main>
+  <div class="ians-column">
+    <label for="cms-add-page-title">Add a new page</label>
+    <input type="text" id="cms-add-page-title">
+    <button type="button">Add page</button>
+    <p>Current pages</p>
+    <ul>
+      <li>Page item</li>
+      <li>Page item</li>
+      <li>Page item</li>
+      <li>Page item</li>
+      <li>Page item</li>
+    </ul>
+  </div>
+</main>

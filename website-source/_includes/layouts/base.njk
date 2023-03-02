@@ -14,12 +14,10 @@ breadcrumb: []
     <title>{{ title | safe }}</title>
     {% set css %}
     {% include "../../_shared/css/guide.css" %}
-    {% include "../../_shared/css/shared.css" %}
     {% endset %}
 
     {% if devEnvironment.environment === 'dev' %}
       <link rel="stylesheet" href="/_shared/css/guide.css">
-      <link rel="stylesheet" href="/_shared/css/shared.css">
     {% else %}
       <style>
         {{css | cssmin | safe}}
@@ -57,7 +55,7 @@ breadcrumb: []
       {{ content | safe }}
     {% endif %}
 
-    <footer>&copy; EUROCONTROL</footer>
+    <footer>&copy; 11ty CMS</footer>
 
     {% set js %}
     {% include "../../_shared/js/scrollToTop.js" %}

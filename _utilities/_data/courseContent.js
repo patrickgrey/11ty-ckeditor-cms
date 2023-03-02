@@ -130,11 +130,11 @@ function parseData(data) {
 
   // console.log("contentsString", contentsString);
 
-  contentsString += `<hr/>`;
+  // contentsString += `<hr/>`;
 
   // Eh??
 
-  contentsString += `<p><a href="_styleguide/">Styleguide</a></p>`;
+  // contentsString += `<p><a href="_styleguide/">Styleguide</a></p>`;
 
   // contentsString += `<p class="ians-contents-level-root"><a href="_direct-access/${metaData.courseCode}_DA.html">Direct Access</a></p>`;
 
