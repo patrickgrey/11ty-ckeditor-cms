@@ -31,8 +31,10 @@
   "homepage": "https://github.com/11ty/eleventy-base-blog#readme",
   "dependencies": {
     "@11ty/eleventy": "^2.0.0",
+    "@11ty/eleventy-fetch": "^3.0.0",
     "@11ty/eleventy-img": "^3.0.0",
     "@11ty/eleventy-plugin-vite": "^4.0.0",
+    "@sindresorhus/slugify": "^2.2.0",
     "archiver": "^5.3.1",
     "clean-css": "^5.3.2",
     "cross-env": "^7.0.3",

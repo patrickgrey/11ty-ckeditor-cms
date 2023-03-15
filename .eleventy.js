@@ -43,7 +43,7 @@ async function imageShortcode(src, alt, cls, sizes, widths, formats) {
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.setServerPassthroughCopyBehavior("copy");
-  ["js", "css", "scss", "jpg", "jpeg", "png", "svg", "webp", "avif", "mp3", "pdf", "gif", "json"].forEach((extension) => {
+  ["js", "mjs", "css", "scss", "jpg", "jpeg", "png", "svg", "webp", "avif", "mp3", "pdf", "gif", "json"].forEach((extension) => {
     eleventyConfig.addPassthroughCopy(`website-source/**/*.${extension}`);
   });
 
@@ -104,6 +104,21 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addAsyncShortcode("image", imageShortcode);
+
+  function helloMidlleware(req, res, next) {
+    // if(!req.url.startsWith("/img")) {
+    // }
+    console.log("Hellooooo middleware. I am in you!!!!")
+    next();
+    // do the thing
+  }
+
+  eleventyConfig.setServerOptions({
+    middleware: [helloMidlleware]
+  });
+
+  console.log("eleventyConfig: ", eleventyConfig);
+
 
   return {
     // Control which files Eleventy will process

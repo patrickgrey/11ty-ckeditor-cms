@@ -1,8 +1,6 @@
 ---
 layout: layouts/base.njk
 title: CMS Home
-jsFiles:
-cssFiles:
 useDefaultHeader: false
 hideBanner: true
 ---
@@ -12,16 +10,23 @@ hideBanner: true
 
 <main>
   <div class="ians-column">
-    <label for="cms-add-page-title">Add a new page</label>
-    <input type="text" id="cms-add-page-title">
-    <button type="button">Add page</button>
-    <p>Current pages</p>
+    <form id="cmsForm">
+      <label for="cmsAddTitle">Create a new page by entering a title here: </label>
+      <div>
+        <div>
+          <input aria-describedby="cmsInputDescription" type="text" required pattern="^[\w\-\s]+$" id="cmsAddTitle">
+          <button id="cmsSubmit">Add page</button>
+        </div>
+        <p id="cmsInputDescription" class="mt-0 cms-message">Note: this required field can only contain alphanumeric characters, spaces and "-" or "_".</p>
+      </div>
+    </form>
+    {# <p>Current pages</p>
     <ul>
       <li>Page item</li>
       <li>Page item</li>
       <li>Page item</li>
       <li>Page item</li>
       <li>Page item</li>
-    </ul>
+    </ul> #}
   </div>
 </main>
