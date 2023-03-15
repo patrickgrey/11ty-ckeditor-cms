@@ -4,6 +4,17 @@ const purgeCssPlugin = require("eleventy-plugin-purgecss");
 const CleanCSS = require("clean-css");
 const { minify } = require("terser");
 const path = require("path");
+const fs = require("fs");
+const createPage = require(path.join(__dirname, "website-source/_cms/_server-side/cms-page-create.js"));
+
+// console.log("__dirname: ", __dirname);
+
+// if (fs.existsSync(path.join(__dirname, "website-source/_cms/_server-side/cms-page-create.js"))) {
+//   console.log('file exists');
+// } else {
+//   console.log('file not found!');
+// }
+
 
 async function imageShortcode(src, alt, cls, sizes, widths, formats) {
   const imagePath = path.dirname(src);
@@ -108,7 +119,8 @@ module.exports = function (eleventyConfig) {
   function helloMidlleware(req, res, next) {
     // if(!req.url.startsWith("/img")) {
     // }
-    console.log("Hellooooo middleware. I am in you!!!!")
+    console.log("Hellooooo middleware. I am in you!!!!");
+    createPage();
     next();
     // do the thing
   }
@@ -117,7 +129,7 @@ module.exports = function (eleventyConfig) {
     middleware: [helloMidlleware]
   });
 
-  console.log("eleventyConfig: ", eleventyConfig);
+  // console.log("eleventyConfig: ", eleventyConfig);
 
 
   return {
