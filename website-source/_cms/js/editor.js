@@ -2,9 +2,19 @@ import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document/build/
 import TurndownService from 'turndown';
 
 const turndownService = new TurndownService();
+const parsedUrl = new URL(window.location.href);
+const title = parsedUrl.searchParams.get("title");
+let ckeditor;
 
 function startAutoSave(data) {
   console.log(turndownService.turndown(data));
+}
+
+async function getMarkdown() {
+  let response = await fetch(`/blog/${title}/index.md`);
+  if (response.ok) {
+    console.log("response: ", response);
+  }
 }
 
 // https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/ui/document-editor.html
@@ -20,6 +30,7 @@ DecoupledEditor
     }
   })
   .then(editor => {
+    ckeditor = editor;
     const toolbarContainer = document.querySelector('.document-editor__toolbar');
     toolbarContainer.appendChild(editor.ui.view.toolbar.element);
     editor.model.document.on('change:data', () => {
@@ -32,9 +43,15 @@ DecoupledEditor
 
     cmsPublish.addEventListener("click", function (event) {
       console.log("cmsPublish: ");
-    })
+    });
+
+    getMarkdown();
 
   })
   .catch(error => {
     console.error(error);
   });
+
+const titleInput = document.querySelector("#cms-meta-title");
+titleInput.value = title;
+

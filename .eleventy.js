@@ -5,7 +5,10 @@ const CleanCSS = require("clean-css");
 const { minify } = require("terser");
 const path = require("path");
 const fs = require("fs");
-const createPage = require(path.join(__dirname, "website-source/_cms/_server-side/cms-page-create.js"));
+const http = require('http');
+const querystring = require('querystring');
+const url = require('url');
+const createPost = require(path.join(__dirname, "website-source/_cms/_server-side/cms-post-create.js"));
 
 // console.log("__dirname: ", __dirname);
 
@@ -62,6 +65,11 @@ module.exports = function (eleventyConfig) {
   if (process.env.DEV_ENVIRONMENT === "dev") {
     eleventyConfig.addPlugin(EleventyVitePlugin, {
       tempFolderName: "website-publish", // Default name of the temp folder
+      viteOptions: {
+        server: {
+          hmr: false,
+        }
+      }
     });
   }
   else {
@@ -114,13 +122,47 @@ module.exports = function (eleventyConfig) {
 	</div>`;
   });
 
+  eleventyConfig.setServerOptions({
+    liveReload: false
+  });
+
   eleventyConfig.addAsyncShortcode("image", imageShortcode);
 
   function helloMidlleware(req, res, next) {
-    // if(!req.url.startsWith("/img")) {
-    // }
-    console.log("Hellooooo middleware. I am in you!!!!");
-    createPage();
+
+    const blogTitle = "/blog/";
+    // console.log("referer", req.referer);
+    // Intercept blog calls with the supplied slug
+    let routeUrl = req.url;
+    let parsedRouteUrl = url.parse(routeUrl);
+    let requiredQueryString = querystring.parse(parsedRouteUrl.query);
+    // console.log("requiredQueryString: ", requiredQueryString.createCall);
+    if (req.url.startsWith(blogTitle) && requiredQueryString.createCall === "1") {
+      const postTitle = req.url.replace(blogTitle, "")
+        .replace("/", "")
+        .replace("index.html?createCall=1", "");
+      // .replace("index.html?createCall=2", "");
+      const response = createPost(postTitle);
+      console.log("response: ", response);
+      // req.on('data', chunk => {
+      //   postTitle += chunk.toString(); // convert Buffer to string
+      // });
+      // req.on('end', () => {
+      //   console.log("end: ", postTitle);
+      //   const response = createPost(postTitle);
+      //   console.log("response: ", response);
+
+      //   // console.log(JSON.stringify(result));
+      //   // res.writeHead(200, {
+      //   //   "Content-Type": "application/json"
+      //   // });
+      //   // res.statusCode = 200;
+      //   // console.log("res: ", res);
+      //   // res.write(result);
+      //   // res.end();
+      // });
+      // res.end();
+    }
     next();
     // do the thing
   }
